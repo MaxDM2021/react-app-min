@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import {styled} from 'styled-components';
 // import "./Header.css"
 
@@ -14,9 +14,23 @@ background: #fafafa;
 
 export default function Header() {
 
+
 const [now, setNow] = useState(new Date())
 
-setInterval(() => setNow(new Date()), 1000)
+useEffect(()=>{
+  const interval = setInterval(() => setNow(new Date()), 1000)
+
+  return () => {
+    clearInterval(interval)
+    console.log('clening....')
+  }
+
+
+}, [])
+
+
+
+
 
 
     return(
